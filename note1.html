@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For You</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #faf6f0;
+      --warm: #f0e6d3;
+      --ink: #2c1f14;
+      --blush: #c9826b;
+      --gold: #b8935a;
+      --muted: #8a7060;
+    }
+
+    body {
+      background-color: var(--cream);
+      color: var(--ink);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      overflow-x: hidden;
+    }
+
+    /* Subtle paper texture overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(ellipse at 20% 10%, rgba(201,130,107,0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 90%, rgba(184,147,90,0.07) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .card {
+      position: relative;
+      z-index: 1;
+      max-width: 480px;
+      width: 100%;
+      background: #fff;
+      border: 1px solid rgba(184,147,90,0.2);
+      padding: 3.5rem 3rem 3rem;
+      box-shadow:
+        0 2px 4px rgba(44,31,20,0.04),
+        0 8px 32px rgba(44,31,20,0.08),
+        0 0 0 6px var(--cream),
+        0 0 0 7px rgba(184,147,90,0.15);
+      opacity: 0;
+      transform: translateY(18px);
+      animation: rise 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
+    }
+
+    @keyframes rise {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .ornament {
+      text-align: center;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fade 0.8s ease 0.9s forwards;
+    }
+
+    .ornament svg {
+      width: 48px;
+      height: 24px;
+      overflow: visible;
+    }
+
+    .label {
+      font-family: 'Jost', sans-serif;
+      font-weight: 200;
+      font-size: 0.6rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 1.6rem;
+      opacity: 0;
+      animation: fade 0.8s ease 1.1s forwards;
+    }
+
+    .message {
+      font-size: 1.25rem;
+      font-weight: 300;
+      line-height: 1.9;
+      color: var(--ink);
+      text-align: center;
+      opacity: 0;
+      animation: fade 0.9s ease 1.3s forwards;
+    }
+
+    .message em {
+      font-style: italic;
+      color: var(--blush);
+    }
+
+    .divider {
+      width: 40px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 2rem auto;
+      opacity: 0;
+      animation: fade 0.8s ease 1.5s forwards;
+    }
+
+    .signature {
+      font-size: 1.5rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--muted);
+      text-align: center;
+      opacity: 0;
+      animation: fade 0.8s ease 1.7s forwards;
+    }
+
+    .date {
+      font-family: 'Jost', sans-serif;
+      font-weight: 200;
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      color: var(--gold);
+      text-align: center;
+      margin-top: 0.5rem;
+      opacity: 0;
+      animation: fade 0.8s ease 1.9s forwards;
+    }
+
+    @keyframes fade {
+      to { opacity: 1; }
+    }
+
+    /* Floating petals */
+    .petal {
+      position: fixed;
+      width: 6px;
+      height: 10px;
+      border-radius: 50% 0 50% 0;
+      opacity: 0;
+      pointer-events: none;
+      animation: float linear infinite;
+    }
+
+    @keyframes float {
+      0%   { transform: translateY(-20px) rotate(0deg);   opacity: 0; }
+      10%  { opacity: 0.4; }
+      90%  { opacity: 0.15; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="ornament">
+      <!-- Delicate botanical line art -->
+      <svg viewBox="0 0 80 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M40 28 C40 28 40 10 40 4" stroke="#b8935a" stroke-width="0.8" stroke-linecap="round"/>
+        <path d="M40 18 C34 14 28 16 24 12" stroke="#b8935a" stroke-width="0.7" stroke-linecap="round"/>
+        <path d="M40 14 C46 10 52 12 56 8" stroke="#b8935a" stroke-width="0.7" stroke-linecap="round"/>
+        <path d="M40 22 C36 20 30 22 27 19" stroke="#c9826b" stroke-width="0.6" stroke-linecap="round" opacity="0.6"/>
+        <path d="M40 20 C44 18 50 20 53 17" stroke="#c9826b" stroke-width="0.6" stroke-linecap="round" opacity="0.6"/>
+        <circle cx="40" cy="4" r="1.5" fill="#b8935a"/>
+        <circle cx="24" cy="12" r="1" fill="#c9826b" opacity="0.7"/>
+        <circle cx="56" cy="8" r="1" fill="#c9826b" opacity="0.7"/>
+        <!-- flanking lines -->
+        <path d="M4 15 H32" stroke="#b8935a" stroke-width="0.5" opacity="0.4"/>
+        <path d="M48 15 H76" stroke="#b8935a" stroke-width="0.5" opacity="0.4"/>
+        <circle cx="4" cy="15" r="1" fill="#b8935a" opacity="0.4"/>
+        <circle cx="76" cy="15" r="1" fill="#b8935a" opacity="0.4"/>
+      </svg>
+    </div>
+
+    <div class="label">a note for my love</div>
+
+    <p class="message">
+      Wherever you are right now,<br>
+      I want you to know that <em>I am thinking of you</em> —<br>
+      the way you smile,<br>
+      the way you make every room feel warmer.<br><br>
+      Distance is just distance.<br>
+      You carry the home with you.
+    </p>
+
+    <div class="divider"></div>
+
+    <div class="signature">always yours</div>
+    <div class="date">— Jason Henderson : 2026 April 04—</div>
+  </div>
+
+  <script>
+    // Floating petal effect
+    const colors = ['#c9826b', '#b8935a', '#d4a898', '#e8c9a0'];
+    for (let i = 0; i < 12; i++) {
+      const p = document.createElement('div');
+      p.className = 'petal';
+      p.style.cssText = `
+        left: ${Math.random() * 100}vw;
+        background: ${colors[Math.floor(Math.random() * colors.length)]};
+        animation-duration: ${8 + Math.random() * 10}s;
+        animation-delay: ${Math.random() * 12}s;
+        width: ${4 + Math.random() * 5}px;
+        height: ${6 + Math.random() * 8}px;
+        opacity: 0;
+      `;
+      document.body.appendChild(p);
+    }
+  </script>
+
+</body>
+</html>
