@@ -11,7 +11,7 @@ A collection of small notes, hidden in plain sight.
 - [Note 2](note2.html) — *a note for when you first wake up*
 - [Note 3](note3.html) — *a note for when you miss home*
 - [Note 4](note4.html) — *a note for when you need to smile*
-
+- [Note 5](note5.html) — *for you & the little one*
 ---
 
 *Each link goes to the live page. Scan the tag, feel the love.*
