@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Three of Us</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #fdf8f2;
+      --ink: #2c1f14;
+      --blush: #c9826b;
+      --gold: #b8935a;
+      --muted: #8a7060;
+      --sage: #a8b89a;
+      --soft: #f0e6d3;
+    }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 15% 15%, rgba(168,184,154,0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 85% 85%, rgba(201,130,107,0.1) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 0%, rgba(240,230,211,0.4) 0%, transparent 40%);
+      pointer-events: none;
+    }
+
+    .card {
+      position: relative;
+      z-index: 1;
+      max-width: 480px;
+      width: 100%;
+      background: #fff;
+      border: 1px solid rgba(168,184,154,0.3);
+      padding: 3.5rem 3rem 3rem;
+      box-shadow:
+        0 2px 4px rgba(44,31,20,0.04),
+        0 12px 40px rgba(44,31,20,0.08),
+        0 0 0 6px var(--cream),
+        0 0 0 7px rgba(168,184,154,0.2);
+      opacity: 0;
+      transform: translateY(18px);
+      animation: rise 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
+    }
+
+    @keyframes rise { to { opacity: 1; transform: translateY(0); } }
+
+    .ornament {
+      text-align: center;
+      margin-bottom: 1.8rem;
+      opacity: 0;
+      animation: fade 0.8s ease 0.9s forwards;
+    }
+
+    .label {
+      font-family: 'Jost', sans-serif;
+      font-weight: 200;
+      font-size: 0.6rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--sage);
+      text-align: center;
+      margin-bottom: 1.6rem;
+      opacity: 0;
+      animation: fade 0.8s ease 1.1s forwards;
+    }
+
+    .message {
+      font-size: 1.25rem;
+      font-weight: 300;
+      line-height: 1.95;
+      color: var(--ink);
+      text-align: center;
+      opacity: 0;
+      animation: fade 0.9s ease 1.3s forwards;
+    }
+
+    .message em { font-style: italic; color: var(--blush); }
+    .message .sage { color: var(--sage); }
+    .message .gold { color: var(--gold); }
+
+    .divider {
+      width: 40px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--sage), transparent);
+      margin: 2rem auto;
+      opacity: 0;
+      animation: fade 0.8s ease 1.5s forwards;
+    }
+
+    .signature {
+      font-size: 1.5rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--muted);
+      text-align: center;
+      opacity: 0;
+      animation: fade 0.8s ease 1.7s forwards;
+    }
+
+    .tiny {
+      font-family: 'Jost', sans-serif;
+      font-weight: 200;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      color: var(--sage);
+      text-align: center;
+      margin-top: 0.6rem;
+      opacity: 0;
+      animation: fade 0.8s ease 1.9s forwards;
+    }
+
+    @keyframes fade { to { opacity: 1; } }
+
+    /* Floating hearts */
+    .heart {
+      position: fixed;
+      font-size: 10px;
+      opacity: 0;
+      pointer-events: none;
+      animation: floatUp linear infinite;
+    }
+
+    @keyframes floatUp {
+      0%   { transform: translateY(0) scale(0.8) rotate(-10deg); opacity: 0; }
+      10%  { opacity: 0.35; }
+      90%  { opacity: 0.1; }
+      100% { transform: translateY(-110vh) scale(1.1) rotate(10deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="ornament">
+      <svg width="64" height="32" viewBox="0 0 64 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- two leaves cradling a tiny sprout -->
+        <path d="M32 28 C32 28 32 12 32 6" stroke="#a8b89a" stroke-width="0.9" stroke-linecap="round"/>
+        <path d="M32 20 C26 16 18 18 14 13" stroke="#a8b89a" stroke-width="0.8" stroke-linecap="round"/>
+        <path d="M32 16 C38 12 46 14 50 9" stroke="#a8b89a" stroke-width="0.8" stroke-linecap="round"/>
+        <circle cx="32" cy="6" r="2" fill="#c9826b" opacity="0.8"/>
+        <circle cx="14" cy="13" r="1.2" fill="#a8b89a" opacity="0.6"/>
+        <circle cx="50" cy="9" r="1.2" fill="#a8b89a" opacity="0.6"/>
+        <!-- flanking lines -->
+        <path d="M2 16 H22" stroke="#a8b89a" stroke-width="0.4" opacity="0.35"/>
+        <path d="M42 16 H62" stroke="#a8b89a" stroke-width="0.4" opacity="0.35"/>
+      </svg>
+    </div>
+
+    <div class="label">for you & the little one</div>
+
+    <p class="message">
+      Six weeks ago,<br>
+      something extraordinary began —<br>
+      <em>quietly, impossibly small,</em><br>
+      and already so loved.<br><br>
+      You are growing a person, Yuanyuan.<br>
+      <span class="gold">A whole entire person.</span><br><br>
+      And while the miles between us<br>
+      are still real,<br>
+      this changes everything —<br>
+      <span class="sage">we are already a family.</span><br><br>
+      I think about you both<br>
+      every single day.<br>
+      <em>Every single one.</em>
+    </p>
+
+    <div class="divider"></div>
+
+    <div class="signature">so proud of you, Honey 🌱</div>
+    <div class="tiny">come home soon — we have so much to look forward to</div>
+  </div>
+
+  <script>
+    const hearts = ['🤍', '🌿', '💛', '🤍'];
+    for (let i = 0; i < 10; i++) {
+      const h = document.createElement('div');
+      h.className = 'heart';
+      h.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+      h.style.cssText = `
+        left: ${Math.random() * 100}vw;
+        font-size: ${8 + Math.random() * 8}px;
+        animation-duration: ${10 + Math.random() * 12}s;
+        animation-delay: ${Math.random() * 15}s;
+      `;
+      document.body.appendChild(h);
+    }
+  </script>
+
+</body>
+</html>
